@@ -16,3 +16,13 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+// Pour Créer les routes en rapport avec l'API
+Route::namespace('Api')->group(function() {
+    Route::resource('users', 'UserController', ['except' => ['create', 'edit']]);
+});
+//-> Les routes créees automatiquement :
+// api/users              | users.index      
+// api/users/{user}       | users.show     
+// api/users/{user}       | users.update    
+// api/users/{user}       | users.destroy
